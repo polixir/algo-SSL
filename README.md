@@ -1,6 +1,6 @@
-# NPF
+# Novelty-Prepared Few-Shot Classification
 PyTorch implementations of the paper
-> Chao Wang , Ruo-Ze Liu , Han-Jia Ye , Yang Yu. **Novelty-Prepared Few-Shot Classification**. ([arxiv](https://arxiv.org/abs/2003.00497))
+> Chao Wang , Ruo-Ze Liu , Han-Jia Ye , Yang Yu. **Novelty-Prepared Few-Shot Classification**. ([https://arxiv.org/abs/2003.00497](https://arxiv.org/abs/2003.00497))
 
 
 ## Requirement
@@ -56,6 +56,6 @@ python ./test.py --dataset miniImagenet --model HRNet --method SSL --train_aug
 Our testbed builds upon several existing publicly available code. Specifically, we have modified and integrated the following code into this project:
 
 * Framework:
-CloserLookFewShot:https://github.com/wyharveychen/CloserLookFewShot
+CloserLookFewShot: https://github.com/wyharveychen/CloserLookFewShot
 * Backbone:
-HRNet:https://github.com/HRNet/HRNet-Image-Classification
+HRNet: https://github.com/HRNet/HRNet-Image-Classification
