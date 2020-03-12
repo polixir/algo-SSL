@@ -14,7 +14,7 @@ PyTorch implementations of the paper
 ## Run
 
 **Prepare data:**
-CUB or MiniImagenet or MiniImagenet->CUB (cross)
+CUB or MiniImagenet or FC100 (Fewshot-CIFAR100) or MiniImagenet->CUB (cross)
 
 example: MiniImagenet
 
@@ -43,11 +43,11 @@ python ./test.py --dataset miniImagenet --model HRNet --method SSL --train_aug
 
 
 ## Results
-**CUB and mini-ImageNet 5-way Acc.**
-| Model        |  CUB 5-way 1-shot   |  CUB 5-way 5-shot   | mini-ImageNet 5-way 1-shot | mini-ImageNet 5-way 5-shot|
-| --------     | :-----: | :----: | :-----: | :----: |
-| SSL(ResNet-18)   | 74.05 ± 0.83%  | 89.92 ± 0.41%  | 60.98 ± 0.81% | 80.61 ± 0.49% |
-| SSL(HRNet)       | 76.07 ± 0.82%  | 91.16 ± 0.37%  | 64.71 ± 0.83% | 83.23 ± 0.54% |
+**CUB, mini-ImageNet and FC100 5-way Acc.**
+| Model        |  CUB 5-way 1-shot   |  CUB 5-way 5-shot   | mini-ImageNet 5-way 1-shot | mini-ImageNet 5-way 5-shot| FC100 5-way 1-shot | FC100 5-way 5-shot|
+| --------     | :-----: | :----: | :-----: | :----: |:-----: | :----: |
+| SSL(ResNet-18)   | 74.05 ± 0.83%  | 89.92 ± 0.41%  | 60.98 ± 0.81% | 80.61 ± 0.49% | 47.43 ± 0.80% | 65.85 ± 0.75% |
+| SSL(HRNet)       | 76.07 ± 0.82%  | 91.16 ± 0.37%  | 64.71 ± 0.83% | 83.23 ± 0.54% | 50.38 ± 0.80% | 69.32 ± 0.76% |
 
 
 
@@ -59,3 +59,5 @@ Our testbed builds upon several existing publicly available code. Specifically, 
 CloserLookFewShot: https://github.com/wyharveychen/CloserLookFewShot
 * Backbone:
 HRNet: https://github.com/HRNet/HRNet-Image-Classification
+* Dataset(FC100):
+MTL: https://github.com/yaoyao-liu/meta-transfer-learning
