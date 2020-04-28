@@ -55,36 +55,30 @@ class SSL_Linear(nn.Module):
 
             return scores
 
+        _weight_n = self.L.weight.data.clone()
+        _weight_norm = torch.norm(_weight_n, p=2, dim=1).unsqueeze(-1).repeat(1, self.indim)
+        _weight_n = _weight_n / _weight_norm
+        self.L.weight.data = _weight_n
         self.L_weight_data_bak = self.L.weight.data.clone()
         outputs = []
-
+                
         for i in range(x_normalized.size()[0]):
             x_i = x_normalized[i:i + 1, :]
             y_i = y[i:i + 1]
             c = y_i.item()
-            ########
-            _weight_n = self.L.weight.data.clone()
-            _weight_norm = torch.norm(_weight_n, p=2, dim=1).unsqueeze(-1).repeat(1, self.indim)
-            _weight_n = _weight_n / _weight_norm
-            self.L.weight.data = _weight_n
             out = self.L(x_i)[0]
             theta = torch.abs(torch.ones_like(out) * out[c] - out)*self.alpha
             theta = theta.repeat(self.L.weight.data.size()[1]).view(self.L.weight.data.size())
-
             weight_c = self.L.weight.data[c].clone()
-            self.L.weight.data = self.L_weight_data_bak
-            weight_n= theta*weight_c.repeat(self.L.weight.data.size()[0]).view(self.L.weight.data.size())
+            weight_n = theta * weight_c.repeat(self.L.weight.data.size()[0]).view(self.L.weight.data.size())
             _weight_n = self.L.weight.data.clone()
             _weight_n = _weight_n.cpu()
             weight_n = weight_n.cpu() + _weight_n
-
-
             weight_norm = torch.norm(weight_n, p=2, dim=1).unsqueeze(-1).repeat(1, self.indim)
             weight_n = weight_n / weight_norm
             self.L.weight.data = weight_n
-
             outputs.append(self.L(x_i))
-            # self.L.weight.data = self.L_weight_data_bak
+            self.L.weight.data = self.L_weight_data_bak
 
         cos_dist = torch.cat(outputs, 0)
         scores = self.scale_factor * (cos_dist)
