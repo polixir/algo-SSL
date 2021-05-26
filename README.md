@@ -53,7 +53,8 @@ python ./test.py --dataset miniImagenet --model HRNet --method SSL --train_aug
 | FC100 5-way 1-shot   | 47.43 ± 0.80%  | 50.38 ± 0.80%|
 | FC100 5-way 5-shot   | 65.85 ± 0.75% | 69.32 ± 0.76% |
 
-
+## Bug fix
+Eq (3) in the paper should be:   S_{cos}(w_i,\phi(x))={\alpha} {\|w_i\|} {\|\phi(x)\|} {\cos\theta_i}
 
 
 ## References
